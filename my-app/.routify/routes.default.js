@@ -17,39 +17,6 @@ export default {
   "children": [
     {
       "meta": {},
-      "id": "_default_MessagingDashboard",
-      "_regex": {},
-      "_paramKeys": {},
-      "name": "MessagingDashboard",
-      "module": false,
-      "file": {
-        "path": "src/routes/MessagingDashboard",
-        "dir": "src/routes",
-        "base": "MessagingDashboard",
-        "ext": "",
-        "name": "MessagingDashboard"
-      },
-      "children": [
-        {
-          "meta": {},
-          "id": "_default_MessagingDashboard_index_svelte",
-          "_regex": {},
-          "_paramKeys": {},
-          "name": "index",
-          "file": {
-            "path": "src/routes/MessagingDashboard/index.svelte",
-            "dir": "src/routes/MessagingDashboard",
-            "base": "index.svelte",
-            "ext": ".svelte",
-            "name": "index"
-          },
-          "asyncModule": () => import('../src/routes/MessagingDashboard/index.svelte'),
-          "children": []
-        }
-      ]
-    },
-    {
-      "meta": {},
       "id": "_default__components",
       "_regex": {},
       "_paramKeys": {},
@@ -130,6 +97,72 @@ export default {
           ]
         }
       ]
+    },
+    {
+      "meta": {},
+      "id": "_default_community",
+      "_regex": {},
+      "_paramKeys": {},
+      "name": "community",
+      "module": false,
+      "file": {
+        "path": "src/routes/community",
+        "dir": "src/routes",
+        "base": "community",
+        "ext": "",
+        "name": "community"
+      },
+      "children": [
+        {
+          "meta": {},
+          "id": "_default_community_dashbord",
+          "_regex": {},
+          "_paramKeys": {},
+          "name": "dashbord",
+          "module": false,
+          "file": {
+            "path": "src/routes/community/dashbord",
+            "dir": "src/routes/community",
+            "base": "dashbord",
+            "ext": "",
+            "name": "dashbord"
+          },
+          "children": [
+            {
+              "meta": {},
+              "id": "_default_community_dashbord_index_svelte",
+              "_regex": {},
+              "_paramKeys": {},
+              "name": "index",
+              "file": {
+                "path": "src/routes/community/dashbord/index.svelte",
+                "dir": "src/routes/community/dashbord",
+                "base": "index.svelte",
+                "ext": ".svelte",
+                "name": "index"
+              },
+              "asyncModule": () => import('../src/routes/community/dashbord/index.svelte'),
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "meta": {},
+      "id": "_default_datastore",
+      "_regex": {},
+      "_paramKeys": {},
+      "name": "datastore",
+      "module": false,
+      "file": {
+        "path": "src/routes/datastore",
+        "dir": "src/routes",
+        "base": "datastore",
+        "ext": "",
+        "name": "datastore"
+      },
+      "children": []
     },
     {
       "meta": {},
