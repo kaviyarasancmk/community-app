@@ -2,7 +2,15 @@ import adapter from '@sveltejs/adapter-static';
 
 export default {
   kit: {
-    // Other SvelteKit configuration options...
     adapter: adapter(),
+  },
+  paths: {
+    '/signup-data': (request) => {
+      return { 
+        data: {
+          title: 'Sign-up Data',
+        },
+      };
+    },
   },
 };

@@ -115,6 +115,39 @@ export default {
       "children": [
         {
           "meta": {},
+          "id": "_default_community_cretecommunity",
+          "_regex": {},
+          "_paramKeys": {},
+          "name": "cretecommunity",
+          "module": false,
+          "file": {
+            "path": "src/routes/community/cretecommunity",
+            "dir": "src/routes/community",
+            "base": "cretecommunity",
+            "ext": "",
+            "name": "cretecommunity"
+          },
+          "children": [
+            {
+              "meta": {},
+              "id": "_default_community_cretecommunity_index_svelte",
+              "_regex": {},
+              "_paramKeys": {},
+              "name": "index",
+              "file": {
+                "path": "src/routes/community/cretecommunity/index.svelte",
+                "dir": "src/routes/community/cretecommunity",
+                "base": "index.svelte",
+                "ext": ".svelte",
+                "name": "index"
+              },
+              "asyncModule": () => import('../src/routes/community/cretecommunity/index.svelte'),
+              "children": []
+            }
+          ]
+        },
+        {
+          "meta": {},
           "id": "_default_community_dashbord",
           "_regex": {},
           "_paramKeys": {},
@@ -162,7 +195,41 @@ export default {
         "ext": "",
         "name": "datastore"
       },
-      "children": []
+      "children": [
+        {
+          "meta": {},
+          "id": "_default_datastore_signupdata",
+          "_regex": {},
+          "_paramKeys": {},
+          "name": "signupdata",
+          "module": false,
+          "file": {
+            "path": "src/routes/datastore/signupdata",
+            "dir": "src/routes/datastore",
+            "base": "signupdata",
+            "ext": "",
+            "name": "signupdata"
+          },
+          "children": [
+            {
+              "meta": {},
+              "id": "_default_datastore_signupdata_index_svelte",
+              "_regex": {},
+              "_paramKeys": {},
+              "name": "index",
+              "file": {
+                "path": "src/routes/datastore/signupdata/index.svelte",
+                "dir": "src/routes/datastore/signupdata",
+                "base": "index.svelte",
+                "ext": ".svelte",
+                "name": "index"
+              },
+              "asyncModule": () => import('../src/routes/datastore/signupdata/index.svelte'),
+              "children": []
+            }
+          ]
+        }
+      ]
     },
     {
       "meta": {},

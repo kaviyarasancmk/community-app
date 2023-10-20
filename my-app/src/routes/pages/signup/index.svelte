@@ -20,6 +20,36 @@
     // For example:
     window.location.href = '/community/dashbord';
   }
+
+
+  // Import the signupStore functions
+  import { addSignup, getSignupData } from '../../datastore/signupStore.js';
+
+
+  // Function to handle sign-up form submission
+  function handleSubmit(event) {
+    event.preventDefault();
+    
+    const username = event.target.username.value;
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+
+    // Add the sign-up data to the store
+    addSignup({ username, email, password });
+
+    // Optionally, you can redirect the user to the dashboard or another page.
+    // router.navigate('/dashboard');
+  }
+
+  // To retrieve sign-up data, you can use getSignupData()
+  const signupData = getSignupData();
+
+  // import { goto } from '@svelte-routing';
+
+  // function navigateToDashboard() {
+  //   goto('/community/dashboard');
+  // }
+
 </script>
 
 <main class="min-h-screen flex items-center justify-center bg-gradient-to-tr from-orange-200 to-orange-100">
@@ -78,14 +108,15 @@
       {#if validationError}
         <p class="text-red-600">{validationError}</p>
       {/if}
-      <div class="flex">
+      <div class="flex gap-5">
+
       <button
-        type="submit"
-        class="w-full p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+      type="submit"
+      class="w-full p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
       >
-        Sign Up
+      Sign Up
       </button>
-      
+
       <button
         type="submit"
         class="w-full p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
@@ -94,6 +125,7 @@
           Back Home
         </a>
       </button>
+      
     </div>
     </form>
 

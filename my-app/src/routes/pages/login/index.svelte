@@ -1,24 +1,20 @@
-<!-- login/index.svelte -->
-
 <script>
+  import { getSignupData } from '../../datastore/signupStore.js';
+
   let email = '';
   let password = '';
 
   async function handleLogin(event) {
     event.preventDefault();
 
-    // Perform login validation here (e.g., check credentials).
-    // If login is successful, navigate to the MessagingDashboard.
+    const signupData = getSignupData();
+    const user = signupData.find((userData) => userData.email === email && userData.password === password);
 
-    if (email === 'your-email@example.com' && password === 'your-password') {
-      // Simulate a successful login by setting a flag.
-      const isLoggedIn = true;
-      localStorage.setItem('isLoggedIn', JSON.stringify(isLoggedIn));
-
-      // Redirect to the MessagingDashboard.
-      window.location.href = '/community/dashbord';
+    if (user) {
+      // Authentication successful
+      // You can set a user session or redirect the user to the dashboard here
     } else {
-      // Handle login error (e.g., show an error message).
+      // Authentication failed; show an error message or handle it as needed
       alert('Invalid credentials. Please try again.');
     }
   }
