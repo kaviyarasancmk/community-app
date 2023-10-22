@@ -50,12 +50,23 @@
       </div>
 
       <div class="mb-4 flex gap-2 flex-row justify-between">
+        
+        <button
+        type="submit"
+        class="w-full p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+      >
+        <a href="/">
+          Back Home
+        </a>
+      </button>
+
         <button
           type="submit"
           class="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
         >
           Log In
         </button>
+        
       </div>
     </form>
   </div>

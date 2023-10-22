@@ -1,55 +1,61 @@
-<!-- signup/index.svelte -->
-
 <script>
-  let username = '';
-  let email = '';
-  let password = '';
-  let confirmPassword = '';
-  let validationError = '';
+  let firstname = ''
+  let lastname = ''
+  let username = ''
+  let email = ''
+  let emailotp = ''
+  let password = ''
+  let confirmPassword = ''
+  let validationError = ''
+
+  async function sendOTP() {
+    try {
+      const response = await fetch('/api/send-otp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      })
+
+      if (response.ok) {
+        // OTP email sent successfully
+        alert('OTP sent successfully.')
+      } else {
+        // Handle error if the email sending failed
+        alert('Failed to send OTP. Please try again.')
+      }
+    } catch (error) {
+      console.error('Error sending OTP:', error)
+    }
+  }
 
   async function handleSignup(event) {
-    event.preventDefault();
+    event.preventDefault()
 
-    // Add validation logic here (e.g., check if the password matches confirmPassword).
     if (password !== confirmPassword) {
-      validationError = "Passwords don't match.";
-      return;
+      validationError = "Passwords don't match."
+      return
     }
 
-    // After successful signup, you can navigate to the MessagingDashboard.
-    // For example:
-    window.location.href = '/community/dashbord';
+    window.location.href = '/community/dashbord'
   }
 
+  import { addSignup, getSignupData } from '../../datastore/signupStore.js'
 
-  // Import the signupStore functions
-  import { addSignup, getSignupData } from '../../datastore/signupStore.js';
-
-
-  // Function to handle sign-up form submission
   function handleSubmit(event) {
-    event.preventDefault();
-    
-    const username = event.target.username.value;
-    const email = event.target.email.value;
-    const password = event.target.password.value;
+    event.preventDefault()
 
-    // Add the sign-up data to the store
-    addSignup({ username, email, password });
+    const firstname = event.target.firstname.value
+    const lastname = event.target.lastname.value
+    const username = event.target.username.value
+    const email = event.target.email.value
+    const password = event.target.password.value
 
-    // Optionally, you can redirect the user to the dashboard or another page.
-    // router.navigate('/dashboard');
+    addSignup({ username, firstname, lastname, email, emailotp, password })
   }
 
-  // To retrieve sign-up data, you can use getSignupData()
-  const signupData = getSignupData();
-
-  // import { goto } from '@svelte-routing';
-
-  // function navigateToDashboard() {
-  //   goto('/community/dashboard');
-  // }
-
+  const signupData = getSignupData()
 </script>
 
 <main class="min-h-screen flex items-center justify-center bg-gradient-to-tr from-orange-200 to-orange-100">
@@ -57,6 +63,31 @@
     <h1 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Sign Up</h1>
 
     <form on:submit={handleSignup} class="min-w-max">
+      <div class="flex gap-2 flex-wrap justify-between">
+        <div class="mb-4">
+          <label for="firstname" class="block font-semibold text-gray-800">First Name</label>
+          <input
+            type="text"
+            id="firstname"
+            name="firstname"
+            bind:value={firstname}
+            class="w-40 px-3 py-2 border rounded-lg"
+            required
+          />
+        </div>
+
+        <div class="mb-4">
+          <label for="lastname" class="block font-semibold text-gray-800">Last Name</label>
+          <input
+            type="text"
+            id="lastname"
+            name="lastname"
+            bind:value={lastname}
+            class="w-36 px-3 py-2 border rounded-lg"
+          />
+        </div>
+      </div>
+
       <div class="mb-4">
         <label for="username" class="block font-semibold text-gray-800">Username</label>
         <input
@@ -79,6 +110,29 @@
           class="w-full px-3 py-2 border rounded-lg"
           required
         />
+        <div class="flex gap-2 justify-between">
+          <div>
+            <input
+              type="button"
+              id="emailsend"
+              name="emailsend"
+              class="w-28 px-4 py-2 mt-6 border rounded-lg text-center bg-green-200 border-red-200"
+              value="Send OTP"
+              on:click={sendOTP}
+            />
+          </div>
+          <div>
+            <label for="emailotp" class="block font-semibold text-gray-800">Email OTP</label>
+            <input
+              type="number"
+              id="emailotp"
+              name="emailotp"
+              bind:value={emailotp}
+              class="w-full px-3 py-2 border rounded-lg"
+              required
+            />
+          </div>
+        </div>
       </div>
 
       <div class="mb-4">
@@ -109,25 +163,14 @@
         <p class="text-red-600">{validationError}</p>
       {/if}
       <div class="flex gap-5">
+        
+        <button type="submit" class="w-full p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+          <a href="/"> Back Home </a>
+        </button>
+        
+        <button type="submit" class="w-full p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"> Sign Up </button>
 
-      <button
-      type="submit"
-      class="w-full p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-      >
-      Sign Up
-      </button>
-
-      <button
-        type="submit"
-        class="w-full p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-      >
-        <a href="/">
-          Back Home
-        </a>
-      </button>
-      
-    </div>
+      </div>
     </form>
-
   </div>
 </main>
