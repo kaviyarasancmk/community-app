@@ -17,89 +17,6 @@ export default {
   "children": [
     {
       "meta": {},
-      "id": "_default__components",
-      "_regex": {},
-      "_paramKeys": {},
-      "name": "_components",
-      "module": false,
-      "file": {
-        "path": "src/routes/_components",
-        "dir": "src/routes",
-        "base": "_components",
-        "ext": "",
-        "name": "_components"
-      },
-      "children": [
-        {
-          "meta": {},
-          "id": "_default__components_hero",
-          "_regex": {},
-          "_paramKeys": {},
-          "name": "hero",
-          "module": false,
-          "file": {
-            "path": "src/routes/_components/hero",
-            "dir": "src/routes/_components",
-            "base": "hero",
-            "ext": "",
-            "name": "hero"
-          },
-          "children": [
-            {
-              "meta": {},
-              "id": "_default__components_hero_index_svelte",
-              "_regex": {},
-              "_paramKeys": {},
-              "name": "index",
-              "file": {
-                "path": "src/routes/_components/hero/index.svelte",
-                "dir": "src/routes/_components/hero",
-                "base": "index.svelte",
-                "ext": ".svelte",
-                "name": "index"
-              },
-              "asyncModule": () => import('../src/routes/_components/hero/index.svelte'),
-              "children": []
-            }
-          ]
-        },
-        {
-          "meta": {},
-          "id": "_default__components_navbar",
-          "_regex": {},
-          "_paramKeys": {},
-          "name": "navbar",
-          "module": false,
-          "file": {
-            "path": "src/routes/_components/navbar",
-            "dir": "src/routes/_components",
-            "base": "navbar",
-            "ext": "",
-            "name": "navbar"
-          },
-          "children": [
-            {
-              "meta": {},
-              "id": "_default__components_navbar_index_svelte",
-              "_regex": {},
-              "_paramKeys": {},
-              "name": "index",
-              "file": {
-                "path": "src/routes/_components/navbar/index.svelte",
-                "dir": "src/routes/_components/navbar",
-                "base": "index.svelte",
-                "ext": ".svelte",
-                "name": "index"
-              },
-              "asyncModule": () => import('../src/routes/_components/navbar/index.svelte'),
-              "children": []
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "meta": {},
       "id": "_default_community",
       "_regex": {},
       "_paramKeys": {},
@@ -115,69 +32,133 @@ export default {
       "children": [
         {
           "meta": {},
-          "id": "_default_community_cretecommunity",
+          "id": "_default_community_cretecommunity_svelte",
           "_regex": {},
           "_paramKeys": {},
           "name": "cretecommunity",
-          "module": false,
           "file": {
-            "path": "src/routes/community/cretecommunity",
+            "path": "src/routes/community/cretecommunity.svelte",
             "dir": "src/routes/community",
-            "base": "cretecommunity",
-            "ext": "",
+            "base": "cretecommunity.svelte",
+            "ext": ".svelte",
             "name": "cretecommunity"
           },
-          "children": [
-            {
-              "meta": {},
-              "id": "_default_community_cretecommunity_index_svelte",
-              "_regex": {},
-              "_paramKeys": {},
-              "name": "index",
-              "file": {
-                "path": "src/routes/community/cretecommunity/index.svelte",
-                "dir": "src/routes/community/cretecommunity",
-                "base": "index.svelte",
-                "ext": ".svelte",
-                "name": "index"
-              },
-              "asyncModule": () => import('../src/routes/community/cretecommunity/index.svelte'),
-              "children": []
-            }
-          ]
+          "asyncModule": () => import('../src/routes/community/cretecommunity.svelte'),
+          "children": []
         },
         {
           "meta": {},
-          "id": "_default_community_dashbord",
+          "id": "_default_community_dashboard",
           "_regex": {},
           "_paramKeys": {},
-          "name": "dashbord",
+          "name": "dashboard",
           "module": false,
           "file": {
-            "path": "src/routes/community/dashbord",
+            "path": "src/routes/community/dashboard",
             "dir": "src/routes/community",
-            "base": "dashbord",
+            "base": "dashboard",
             "ext": "",
-            "name": "dashbord"
+            "name": "dashboard"
           },
           "children": [
             {
               "meta": {},
-              "id": "_default_community_dashbord_index_svelte",
+              "id": "_default_community_dashboard_index_svelte",
               "_regex": {},
               "_paramKeys": {},
               "name": "index",
               "file": {
-                "path": "src/routes/community/dashbord/index.svelte",
-                "dir": "src/routes/community/dashbord",
+                "path": "src/routes/community/dashboard/index.svelte",
+                "dir": "src/routes/community/dashboard",
                 "base": "index.svelte",
                 "ext": ".svelte",
                 "name": "index"
               },
-              "asyncModule": () => import('../src/routes/community/dashbord/index.svelte'),
+              "asyncModule": () => import('../src/routes/community/dashboard/index.svelte'),
               "children": []
             }
           ]
+        }
+      ]
+    },
+    {
+      "meta": {},
+      "id": "_default_components",
+      "_regex": {},
+      "_paramKeys": {},
+      "name": "components",
+      "module": false,
+      "file": {
+        "path": "src/routes/components",
+        "dir": "src/routes",
+        "base": "components",
+        "ext": "",
+        "name": "components"
+      },
+      "children": [
+        {
+          "meta": {},
+          "id": "_default_components_hero_svelte",
+          "_regex": {},
+          "_paramKeys": {},
+          "name": "hero",
+          "file": {
+            "path": "src/routes/components/hero.svelte",
+            "dir": "src/routes/components",
+            "base": "hero.svelte",
+            "ext": ".svelte",
+            "name": "hero"
+          },
+          "asyncModule": () => import('../src/routes/components/hero.svelte'),
+          "children": []
+        },
+        {
+          "meta": {},
+          "id": "_default_components_login_svelte",
+          "_regex": {},
+          "_paramKeys": {},
+          "name": "login",
+          "file": {
+            "path": "src/routes/components/login.svelte",
+            "dir": "src/routes/components",
+            "base": "login.svelte",
+            "ext": ".svelte",
+            "name": "login"
+          },
+          "asyncModule": () => import('../src/routes/components/login.svelte'),
+          "children": []
+        },
+        {
+          "meta": {},
+          "id": "_default_components_navbar_svelte",
+          "_regex": {},
+          "_paramKeys": {},
+          "name": "navbar",
+          "file": {
+            "path": "src/routes/components/navbar.svelte",
+            "dir": "src/routes/components",
+            "base": "navbar.svelte",
+            "ext": ".svelte",
+            "name": "navbar"
+          },
+          "asyncModule": () => import('../src/routes/components/navbar.svelte'),
+          "children": []
+        },
+        {
+          "meta": {},
+          "id": "_default_components_signup_svelte",
+          "_regex": {},
+          "_paramKeys": {},
+          "name": "signup",
+          "file": {
+            "path": "src/routes/components/signup.svelte",
+            "dir": "src/routes/components",
+            "base": "signup.svelte",
+            "ext": ".svelte",
+            "name": "signup"
+          },
+          "asyncModule": () => import('../src/routes/components/signup.svelte'),
+          "children": []
         }
       ]
     },
@@ -198,36 +179,19 @@ export default {
       "children": [
         {
           "meta": {},
-          "id": "_default_datastore_signupdata",
+          "id": "_default_datastore_signupdata_svelte",
           "_regex": {},
           "_paramKeys": {},
           "name": "signupdata",
-          "module": false,
           "file": {
-            "path": "src/routes/datastore/signupdata",
+            "path": "src/routes/datastore/signupdata.svelte",
             "dir": "src/routes/datastore",
-            "base": "signupdata",
-            "ext": "",
+            "base": "signupdata.svelte",
+            "ext": ".svelte",
             "name": "signupdata"
           },
-          "children": [
-            {
-              "meta": {},
-              "id": "_default_datastore_signupdata_index_svelte",
-              "_regex": {},
-              "_paramKeys": {},
-              "name": "index",
-              "file": {
-                "path": "src/routes/datastore/signupdata/index.svelte",
-                "dir": "src/routes/datastore/signupdata",
-                "base": "index.svelte",
-                "ext": ".svelte",
-                "name": "index"
-              },
-              "asyncModule": () => import('../src/routes/datastore/signupdata/index.svelte'),
-              "children": []
-            }
-          ]
+          "asyncModule": () => import('../src/routes/datastore/signupdata.svelte'),
+          "children": []
         }
       ]
     },
@@ -261,74 +225,7 @@ export default {
         "ext": "",
         "name": "pages"
       },
-      "children": [
-        {
-          "meta": {},
-          "id": "_default_pages_login",
-          "_regex": {},
-          "_paramKeys": {},
-          "name": "login",
-          "module": false,
-          "file": {
-            "path": "src/routes/pages/login",
-            "dir": "src/routes/pages",
-            "base": "login",
-            "ext": "",
-            "name": "login"
-          },
-          "children": [
-            {
-              "meta": {},
-              "id": "_default_pages_login_index_svelte",
-              "_regex": {},
-              "_paramKeys": {},
-              "name": "index",
-              "file": {
-                "path": "src/routes/pages/login/index.svelte",
-                "dir": "src/routes/pages/login",
-                "base": "index.svelte",
-                "ext": ".svelte",
-                "name": "index"
-              },
-              "asyncModule": () => import('../src/routes/pages/login/index.svelte'),
-              "children": []
-            }
-          ]
-        },
-        {
-          "meta": {},
-          "id": "_default_pages_signup",
-          "_regex": {},
-          "_paramKeys": {},
-          "name": "signup",
-          "module": false,
-          "file": {
-            "path": "src/routes/pages/signup",
-            "dir": "src/routes/pages",
-            "base": "signup",
-            "ext": "",
-            "name": "signup"
-          },
-          "children": [
-            {
-              "meta": {},
-              "id": "_default_pages_signup_index_svelte",
-              "_regex": {},
-              "_paramKeys": {},
-              "name": "index",
-              "file": {
-                "path": "src/routes/pages/signup/index.svelte",
-                "dir": "src/routes/pages/signup",
-                "base": "index.svelte",
-                "ext": ".svelte",
-                "name": "index"
-              },
-              "asyncModule": () => import('../src/routes/pages/signup/index.svelte'),
-              "children": []
-            }
-          ]
-        }
-      ]
+      "children": []
     },
     {
       "meta": {

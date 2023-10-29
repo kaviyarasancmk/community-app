@@ -1,6 +1,6 @@
 <script>
-    import Hero from "./_components/hero/index.svelte"
-	import Navbar from './_components/navbar/index.svelte';
+    import Hero from "./components/hero.svelte"
+	import Navbar from './components/navbar.svelte';
 </script>
 
 <svelte:head>
