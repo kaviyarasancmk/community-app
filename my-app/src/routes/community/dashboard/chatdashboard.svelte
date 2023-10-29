@@ -1,6 +1,8 @@
 <script>
-  import CreateCommunity from '../cretecommunity.svelte';
-  import { communityList } from '../../datastore/communitystore';
+    import CreateCommunity from '../cretecommunity.svelte'
+    import AudioCallIcon from '../../../images/audiocall.png'
+    import VideoCallIcon from '../../../images/videocall.png'
+    import { communityList } from '../../datastore/communitystore'
 
   let isDropdownOpen = false;
   let createCommunityVisible = false;
@@ -34,11 +36,43 @@
     }
   }
 
+  let newMessage = ''
+  
+  let messages = [
+      { text: 'Hello!', sender: 'Alice' },
+      { text: 'Hi there!', sender: 'Bob' },
+    ]
+
   let communities = [];
 
   communityList.subscribe((list) => {
     communities = list;
   });
+
+  function addMessage() {
+      if (newMessage) {
+        messages = [...messages, { text: newMessage, sender: 'You' }]
+        newMessage = ''
+  
+        // Scroll to the bottom
+        messageContainer.scrollTop = messageContainer.scrollHeight
+      }
+    }
+  
+    function handleKeyPress(event) {
+      if (event.key === 'Enter') {
+        addMessage()
+      }
+    }
+
+    function makeAudioCall() {
+      // Handle audio call logic here
+    }
+  
+    function makeVideoCall() {
+      // Handle video call logic here
+    }
+
 </script>
 
 <div class="flex min-h-screen border-2 border-blue-600">
@@ -91,21 +125,50 @@
     </div>
   </div>
 
-  <div class="w-full bg-gray-100 border-2 border-blue-600" style="height: 99.4vh; overflow-y: scroll;">
+  <div class="w-full bg-gray-100 border border-blue-600" style="height: 99.4vh;">
     {#if createCommunityVisible}
       <CreateCommunity {closeDropdown} />
     {:else}
-      <div class="p-4 flex flex-col justify-center items-center gap-10">
-        <h1 class="lg:text-4xl md:text-2xl text-gray-300 font-serif font-black mt-10">Welcome to the Share Hub platform.</h1>
-        <ul>
-          <li class="text-gray-400 text-center my-10 font-semibold">Efficient community communication and information sharing</li>
-          <li class="text-gray-400 text-center my-10 font-semibold">Streamlined event promotion and management.</li>
-          <li class="text-gray-400 text-center my-10 font-semibold">Role-based user management for organized communities.</li>
-          <li class="text-gray-400 text-center my-10 font-semibold">Enhanced group collaboration and real-time interaction.</li>
-          <li class="text-gray-400 text-center my-10 font-semibold">Personalized and secure one-on-one chats.</li>
-          <li class="text-gray-400 text-center my-10 font-semibold">Versatile use cases from education to corporate communication.</li>
-        </ul>
+
+    <div class="p-2">
+
+      <div class="bg-gray-200 rounded h-80 p-4 mb-4">
+        {#each messages as message (message.text)}
+          <div class="mb-4 p-2 rounded-lg {message.sender === 'You' ? 'self-end bg-blue-200' : 'self-start bg-green-200'}">
+            <div class="{message.sender === 'You' ? 'text-right text-blue-600' : 'text-left text-green-600'}">
+              {message.text}
+            </div>
+          </div>
+        {/each}
       </div>
+
+      <div class="flex items-center space-x-2">
+        <input
+          type="text"
+          id="newMessage"
+          name="newMessage"
+          class="flex-1 p-2 border rounded border-gray-300 focus:border-green-600 outline-0"
+          placeholder="Type your message..."
+          bind:value={newMessage}
+          on:keydown={handleKeyPress}
+        />
+        <button on:click={addMessage} class="p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Send</button>
+      </div>
+
+      <div class="flex justify-between items-center mt-4 p-2 rounded bg-stone-500">
+        <h2 class="text-xl font-semibold text-gray-800">Chat Board</h2>
+        <div class="flex space-x-4">
+          <button on:click={makeAudioCall} class="flex items-center p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+            <img src={AudioCallIcon} alt="Audio Call" class="w-6 h-6" />
+            <span class="ml-2">Voice Call</span>
+          </button>
+          <button on:click={makeVideoCall} class="flex items-center p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+            <img src={VideoCallIcon} alt="Video Call" class="w-6 h-6" />
+            <span class="ml-2">Video Call</span>
+          </button>
+        </div>
+      </div>
+    </div>
     {/if}
   </div>
 </div>

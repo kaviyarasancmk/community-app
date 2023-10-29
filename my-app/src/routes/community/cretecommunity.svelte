@@ -1,6 +1,8 @@
 <script>
+  export let closeDropdown;
   import { communityList } from "../datastore/communitystore";
 
+  let communityLink = '';
   let communityName = '';
   let communityDescription = '';
   let communityCategory = '';
@@ -106,6 +108,7 @@
 
     // Create a community object
     const newCommunity = {
+      link: communityLink,
       name: communityName,
       description: communityDescription,
       category: communityCategory,
@@ -130,6 +133,7 @@
     communityList.update((communities) => [...communities, newCommunity]);
 
     // Clear the input fields and other logic
+    communityLink = '';
     communityName = '';
     communityDescription = '';
     communityCategory = '';
@@ -147,10 +151,12 @@
     communityInviteAccess = false;
     communityChatManagerAccess = false;
     communityChatMemberAccess = false;
+
+    closeDropdown();
   }
 </script>
 
-<div class="w-full flex flex-wrap p-4">
+<div class="w-full flex flex-wrap p-4 overflow-y-auto"  style="height: 99.4vh;">
   <h1 class="text-2xl text-center font-semibold text-gray-800 mb-4 w-full">Create Community</h1>
 
   <form class="w-full" on:submit={handleCreateCommunity}>
@@ -318,7 +324,6 @@
           <span class="text-sm text-gray-600">Grant Chat Member Access</span>
         </div>
 
-        <!-- Add more permissions as needed -->
       </div>
     </div>
 

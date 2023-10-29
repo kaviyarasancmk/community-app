@@ -63,6 +63,22 @@ export default {
           "children": [
             {
               "meta": {},
+              "id": "_default_community_dashboard_chatdashboard_svelte",
+              "_regex": {},
+              "_paramKeys": {},
+              "name": "chatdashboard",
+              "file": {
+                "path": "src/routes/community/dashboard/chatdashboard.svelte",
+                "dir": "src/routes/community/dashboard",
+                "base": "chatdashboard.svelte",
+                "ext": ".svelte",
+                "name": "chatdashboard"
+              },
+              "asyncModule": () => import('../src/routes/community/dashboard/chatdashboard.svelte'),
+              "children": []
+            },
+            {
+              "meta": {},
               "id": "_default_community_dashboard_index_svelte",
               "_regex": {},
               "_paramKeys": {},

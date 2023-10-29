@@ -9,7 +9,7 @@
       "skipLibCheck": true,
       "forceConsistentCasingInFileNames": true
     },
-    "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.svelte"],
+    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.svelte"],
     "exclude": ["node_modules"]
   }
   
