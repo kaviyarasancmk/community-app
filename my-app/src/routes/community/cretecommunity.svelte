@@ -156,7 +156,8 @@
   }
 </script>
 
-<div class="w-full flex flex-wrap p-4 overflow-y-auto"  style="height: 99.4vh;">
+<div class="w-full flex flex-wrap overflow-y-auto relative border-2 border-blue-500 " style="height: 100vh;">
+  <div class="w-full p-4">
   <h1 class="text-2xl text-center font-semibold text-gray-800 mb-4 w-full">Create Community</h1>
 
   <form class="w-full" on:submit={handleCreateCommunity}>
@@ -327,8 +328,9 @@
       </div>
     </div>
 
-    <div class="mb-4 w-full flex justify-end">
-      <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Create Community</button>
+    <div class="fixed bottom-0 right-20 mb-4 w-full flex justify-end">
+      <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 shadow-lg shadow-blue-800">Create Community</button>
     </div>
   </form>
+</div>
 </div>

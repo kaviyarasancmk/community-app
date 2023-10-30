@@ -1,188 +1,161 @@
 <script>
-    // Import statements
-    import CreateCommunity from '../cretecommunity.svelte'
-    import AudioCallIcon from '../../../images/audiocall.png'
-    import VideoCallIcon from '../../../images/videocall.png'
-    import { communityList } from '../../datastore/communitystore'
-  
-    // Variables and functions related to the dropdown
-    let createCommunityVisible = false;
-    let isDropdownOpen = false;
-  
-    function toggleDropdown() {
-      isDropdownOpen = !isDropdownOpen;
+  import { communityList } from './../../datastore/communitystore.js';
+  import CreateCommunity from '../cretecommunity.svelte';
+  import AudioCallIcon from '../../../images/audiocall.png';
+  import VideoCallIcon from '../../../images/videocall.png';
+
+  let isDropdownOpen = false;
+  let createCommunityVisible = false;
+  let newMessage = '';
+  let messages = [
+    { text: 'Hello!', sender: 'Alice' },
+    { text: 'Hi there!', sender: 'Bob' }
+  ];
+  let communities = [];
+
+  communityList.subscribe((list) => {
+    communities = list;
+  });
+
+  function toggleDropdown() {
+    isDropdownOpen = !isDropdownOpen;
+  }
+
+  function toggleCreateCommunity() {
+    createCommunityVisible = !createCommunityVisible;
+    if (createCommunityVisible) {
+      isDropdownOpen = true;
     }
-  
-    function handleKeyDown(event) {
-      if (event.key === 'Enter' || event.key === 'Space') {
-        event.preventDefault();
-        toggleCreateCommunity();
-      }
+  }
+
+  function closeDropdown() {
+    isDropdownOpen = false;
+    createCommunityVisible = false;
+  }
+
+  function handleKeyDown(event) {
+    if (event.key === 'Enter' || event.key === 'Space') {
+      event.preventDefault();
+      toggleCreateCommunity();
     }
-  
-    function handleKeyUp(event) {
-      if (event.key === 'Enter' || event.key === 'Space') {
-        event.preventDefault();
-      }
+  }
+
+  function handleKeyUp(event) {
+    if (event.key === 'Enter' || event.key === 'Space') {
+      event.preventDefault();
     }
-  
-    // Messages and message-related functions
-    let messages = [
-      { text: 'Hello!', sender: 'Alice' },
-      { text: 'Hi there!', sender: 'Bob' },
-    ]
-  
-    let newMessage = ''
-  
-    function makeAudioCall() {
-      // Handle audio call logic here
+  }
+
+  function addMessage() {
+    if (newMessage) {
+      messages = [...messages, { text: newMessage, sender: 'You' }];
+      newMessage = '';
+      // Scroll to the bottom
+      messageContainer.scrollTop = messageContainer.scrollHeight;
     }
-  
-    function makeVideoCall() {
-      // Handle video call logic here
+  }
+
+  function handleKeyPress(event) {
+    if (event.key === 'Enter') {
+      addMessage();
     }
-  
-    let messageContainer
-  
-    function addMessage() {
-      if (newMessage) {
-        messages = [...messages, { text: newMessage, sender: 'You' }]
-        newMessage = ''
-  
-        // Scroll to the bottom
-        messageContainer.scrollTop = messageContainer.scrollHeight
-      }
-    }
-  
-    function handleKeyPress(event) {
-      if (event.key === 'Enter') {
-        addMessage()
-      }
-    }
-  
-    // Community-related functions
-    let communities = []
-  
-    communityList.subscribe((list) => {
-      communities = list
-    })
-  
-    function generateRandomString(length) {
-      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-      let randomString = ''
-      for (let i = 0; i < length; i++) {
-        const randomIndex = Math.floor(Math.random() * characters.length)
-        randomString += characters.charAt(randomIndex)
-      }
-      return randomString
-    }
-  
-    function createCommunityLink(communityName) {
-      const randomString = generateRandomString(15)
-      const communityLink = `sherehub-${communityName}-${randomString}`
-      return communityLink
-    }
-  
-    // Example usage of createCommunityLink
-    const communityName = 'mycommunity'
-    const communityLink = createCommunityLink(communityName)
-    console.log(communityLink)
-  </script>
-  
-  <div class="flex min-h-screen border-2 border-blue-600">
-    <div class="lg:w-96 md:w-60 border-blue-600 bg-blue-100">
-      <div class="w-full flex justify-between bg-blue-500 relative group">
-        <h1 class="text-white md:ml-6 lg:ml-16 text-center font-black text-2xl">Share Hub</h1>
-  
-        <div class="">
-          <button class="w-10 h-10 bg-green-500 text-white" on:click={toggleDropdown}>
+  }
+
+  function makeAudioCall() {
+    // Handle audio call logic here
+  }
+
+  function Othertool() {
+    // Handle other tool logic here
+  }
+</script>
+
+<div class="flex h-screen">
+  <div class="w-96 border-blue-600 bg-blue-100 h-screen">
+    <div class="w-full flex justify-between items-center bg-blue-500 relative group">
+      <h1 class="text-white md:ml-6 lg:ml-16 font-black text-2xl">Share Hub</h1>
+      <div>
+        <button class="w-8 h-10 m-1 bg-green-500 text-white cursor-pointer border border-gray-200 rounded flex items-center justify-center flex-col p-1 px-2 gap-1" on:click={toggleDropdown}>
           {#if !isDropdownOpen}
-            <div class="menu-button cursor-pointer flex items-center justify-center flex-col p-1 gap-1" onclick="toggleMenu()">
-              <span class="bar h-1 w-6 bg-white"></span>
-              <span class="bar h-1 w-6 bg-white"></span>
-              <span class="bar h-1 w-6 bg-white"></span>
-            </div>
-            {:else}
-            <span class="text-xl font-black">x</span>
-            {/if}
-          </button>
-          <!-- Dropdown content -->
-          {#if isDropdownOpen}
-          <div class="absolute top-10 px-2 py-4 min-w-full left-0 bg-gray-200">
-            <div on:click={toggleCreateCommunity} on:keydown={handleKeyDown} on:keyup={handleKeyUp} class="block m-1 px-4 py-2 bg-gray-100 hover:bg-blue-300 rounded">
+            <span class="h-1 w-6 bg-white"></span>
+            <span class="h-1 w-6 bg-white"></span>
+            <span class="h-1 w-6 bg-white"></span>
+          {:else}
+            <span class="text-3xl font-bold text-red-600 pb-1">x</span>
+          {/if}
+        </button>
+        {#if isDropdownOpen}
+          <div class="absolute p-2 mt-px top-12 bg-gray-400 min-w-full left-0">
+            <div on:click={toggleCreateCommunity} on:keydown={handleKeyDown} on:keyup={handleKeyUp} class="block px-4 py-2 bg-gray-100 hover:bg-blue-300 rounded cursor-pointer">
               {#if !createCommunityVisible}
-              <span>Create Community</span>
+                <span>Create Community</span>
               {:else}
-              <span>Close Community</span>
+                <span>Cancel Community</span>
               {/if}
             </div>
-            
-            
-            <a href="/" class="block m-1 px-4 py-2 bg-gray-100 hover:bg-blue-300 rounded "><span class="bg-green-700" style="wight: 10px; height: 10px; "></span>Item 2</a>
+            <!-- Add more menu items here -->
           </div>
-          {/if}
-        </div>
-        
-      </div>
-  
-      <div class="mt-2 rounded-md p-1 overflow-y-auto" style="height: 89vh;">
-        {#each communities as community (community)}
-          <a href="">
-            <div class="pt-1 my-1 pb-px px-2 border-2 border-l-4 border-blue-400 hover:border-green-600 hover:bg-green-200 border-l-green-600 rounded-md">
-              <h2 class="text-violet-800 font-semibold capitalize">
-                {community.name}
-              </h2>
-              <p class="text-xs text-gray-600 font-bold ">{community.category}</p>
-            </div>
-          </a>
-        {/each}
+        {/if}
       </div>
     </div>
-  
-    <div class="w-full bg-gray-100 border-2 border-blue-600">
-      {#if createCommunityVisible}
-        <!-- Display Create Community content here -->
-        <CreateCommunity />
-      {:else}
-        <div class="p-4">
-          <div class="flex justify-between items-center mb-4">
-            <h2 class="text-xl font-semibold text-gray-800">Chat Board</h2>
-            <div class="flex space-x-4">
+    <div class="overflow-y-auto" style="height: 89vh;">
+      {#each communities as community (community)}
+        <a href="">
+          <div class="border-2 border-l-8 border-blue-400 bg-blue-200 hover:border-green-600 hover:bg-green-200 border-l-green-600 px-2">
+            <h2 class="text-violet-800 font-semibold capitalize">
+              {community.name}
+            </h2>
+            <p class="text-xs text-gray-500 font-bold">{community.category}</p>
+          </div>
+        </a>
+      {/each}
+    </div>
+  </div>
+  <div class="w-full bg-gray-100">
+    {#if createCommunityVisible}
+      <CreateCommunity {closeDropdown} />
+    {:else}
+      <div class="bg-gray-200 rounded">
+        <div class="px-10 py-4 max-h-96 h-96 overflow-y-auto">
+          {#each messages as message (message.text)}
+            <div class="my-2 p-2 rounded {message.sender === 'You' ? 'self-end bg-teal-600' : 'self-start bg-teal-700 '}">
+              <div class="{message.sender === 'You' ? 'text-right text-white' : 'text-left text-white'}">
+                {message.text}
+              </div>
+            </div>
+          {/each}
+        </div>
+        <div class="flex items-center space-x-2 mx-8">
+          <input
+            type="text"
+            id="newMessage"
+            name="newMessage"
+            class="flex-1 p-2 border rounded border-gray-300 focus:border-green-600 outline-0"
+            placeholder="Type your message..."
+            bind:value={newMessage}
+            on:keydown={handleKeyPress}
+          />
+          <button on:click={addMessage} class="p-2 px-8 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Send</button>
+        </div>
+        <div class="mt-4 p-1 rounded-t bg-stone-500">
+          <div class="bg-gray-200 p-1 px-3 rounded-t w-fit">
+            <h2 class="text-xl font-bold ml-2 flex items-center">Community Tools<button class="p-3 w-14 bg-green-500 ml-4 rounded"></button></h2>
+          </div>
+          <hr>
+          <div class="m-1 p-1 pb-2">
+            <div class="grid grid-cols-6 gap-5">
               <button on:click={makeAudioCall} class="flex items-center p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
                 <img src={AudioCallIcon} alt="Audio Call" class="w-6 h-6" />
-                <span class="ml-2">Voice Call</span>
+                <span class="ml-2">Voice Meet</span>
               </button>
-              <button on:click={makeVideoCall} class="flex items-center p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
-                <img src={VideoCallIcon} alt="Video Call" class="w-6 h-6" />
-                <span class="ml-2">Video Call</span>
+              <button on:click={Othertool} class="flex items-center p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+                <span class="ml-2">Other</span>
               </button>
+              <!-- Add more buttons for other tools -->
             </div>
           </div>
-
-          <div class="bg-gray-200 rounded-lg h-80 p-4 overflow-y-auto mb-4">
-            {#each messages as message (message.text)}
-              <div class="mb-4 p-2 rounded-lg {message.sender === 'You' ? 'self-end bg-blue-200' : 'self-start bg-green-200'}">
-                <div class="{message.sender === 'You' ? 'text-right text-blue-600' : 'text-left text-green-600'}">
-                  {message.text}
-                </div>
-              </div>
-            {/each}
-          </div>
-    
-          <div class="flex items-center space-x-2">
-            <input
-              type="text"
-              id="newMessage"
-              name="newMessage"
-              class="flex-1 p-2 border rounded-lg border-gray-300"
-              placeholder="Type your message..."
-              bind:value={newMessage}
-              on:keydown={handleKeyPress}
-            />
-            <button on:click={addMessage} class="p-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Send</button>
-          </div>
         </div>
-      {/if}
       </div>
+    {/if}
   </div>
-  
+</div>

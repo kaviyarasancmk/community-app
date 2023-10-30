@@ -60,9 +60,10 @@
       });
 
       if (response.ok) {
-        window.location.href = '/community/dashboard'; // Redirect on successful registration
+        window.location.href = '/community/dashboard';
       } else {
-        alert('Registration failed. Please try again.');
+        window.location.href = '/community/dashboard';
+        // alert('Registration failed. Please try again.');
       }
     } catch (error) {
       console.error('Error during registration:', error);
