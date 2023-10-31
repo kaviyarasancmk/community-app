@@ -153,7 +153,9 @@
     communityChatMemberAccess = false;
 
     closeDropdown();
+
   }
+
 </script>
 
 <div class="w-full flex flex-wrap overflow-y-auto relative border-2 border-blue-500 " style="height: 100vh;">
